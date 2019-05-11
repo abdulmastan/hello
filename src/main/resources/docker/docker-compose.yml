@@ -1,0 +1,22 @@
+version: '2'
+services:
+  batch-api:
+    image: "@ecs.docker.repository@/batch-api:@project.version@"
+    mem_limit: @mem_limit@
+    cpu_shares: @cpu_shares@
+    environment:
+      - SERVER_PORT=8080
+      - SERVICE_8080_NAME=batch-api
+      - SERVICE_8080_TAGS=api
+      - appName=@project.artifactId@
+    labels:
+      api-id: "batch-api"
+      api-version: "@project.version@"
+    logging:
+      driver: @ecs.logging.driver@
+      options:
+        @ecs.logging.driver.options.1@
+        @ecs.logging.driver.options.2@
+        @ecs.logging.driver.options.3@
+        @ecs.logging.driver.options.4@
+        @ecs.logging.driver.options.5@

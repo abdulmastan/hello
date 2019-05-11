@@ -1,0 +1,202 @@
+<project>
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.liquidhub.api</groupId>
+    <artifactId>demographics-api</artifactId>
+    <packaging>war</packaging>
+    <version>1.0.2-SNAPSHOT</version>
+    <name>demographics-api</name>
+
+    <parent>
+        <groupId>com.lh.digital.integration.framework</groupId>
+        <artifactId>starter-parent</artifactId>
+        <version>1.4.6</version>
+    </parent>
+    
+     <distributionManagement>
+                <repository>
+                    <id>internalMavenReleaseRepository</id>
+                    <name>Internal Maven Release Repository</name>
+                    <url>${releases.distribution.url}</url>
+                </repository>
+        <snapshotRepository>
+            <id>internalMavenSnapshotRepository</id>
+            <name>Internal Snapshots Repository</name>
+            <url>${snapshots.distribution.url}</url>
+            <uniqueVersion>false</uniqueVersion>
+        </snapshotRepository>
+    </distributionManagement>
+
+    <properties>
+        <packageName>demograpchics</packageName>
+        <start-class>com.liquidhub.api.Application</start-class>
+		<fileNameContext>lhaapidemographics</fileNameContext>
+		<!--
+            This Block is to add Nexus repository details
+        -->
+        <repository.server.root>http://172.21.0.3:8081/repository</repository.server.root>
+        <releases.distribution.url>
+            ${repository.server.root}/allergan-releases/
+        </releases.distribution.url>
+        <snapshots.distribution.url>
+            ${repository.server.root}/allergan-snapshots/
+        </snapshots.distribution.url>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>Brixton.RELEASE</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <dependencies>
+		<!-- 			
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-config</artifactId>
+        </dependency>
+		
+		-->
+		
+		<dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-batch</artifactId>
+        </dependency>
+		
+        <dependency>
+        	<groupId>com.oracle</groupId>
+        	<artifactId>ojdbc6</artifactId>
+        	<version>12.1.0.1-atlassian-hosted</version>
+        </dependency>
+        
+        <dependency>
+			<groupId>com.liquidhub.batch</groupId>
+			<artifactId>batchbusiness</artifactId>
+			<version>1.0.1</version>
+		</dependency>
+        
+       <!-- Below dependency added  to make this deployable in external server.-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-tomcat</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+		    <groupId>net.logstash.logback</groupId>
+		    <artifactId>logstash-logback-encoder</artifactId>
+		    <version>4.7</version>
+		</dependency>		
+       
+    </dependencies>
+
+
+    <build>
+
+        <filters>
+            <!-- DONOT MODIFY -->
+            <filter>
+                api-metadata.properties
+            </filter>
+        </filters>
+
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            
+            <plugin>
+                <groupId>external.atlassian.jgitflow</groupId>
+                <artifactId>jgitflow-maven-plugin</artifactId>
+                <version>1.0-m5.1</version>
+                <configuration>
+                    <pushReleases>true</pushReleases>
+                    <allowUntracked>true</allowUntracked>
+                </configuration>
+            </plugin>
+        </plugins>
+
+		<finalName>lhaapidemographics</finalName>
+
+    </build>
+
+    <profiles>
+        <profile>
+            <!--
+            To be used when building docker files manually and not using the spotify
+            Plugin
+             -->
+            <id>regen-apiproxy</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-antrun-plugin</artifactId>
+                        <version>1.8</version>
+                        <executions>
+                            <execution>
+                                <id>regen-apiproxy</id>
+                                <phase>generate-sources</phase>
+                                <goals>
+                                    <goal>run</goal>
+                                </goals>
+                                <configuration>
+                                    <target>
+                                        <filter filtersfile="${pom.basedir}/api-metadata.properties" />
+                                        <copy todir="${pom.basedir}/src/gateway/apiproxy/proxies" filtering="true" overwrite="true">
+                                            <fileset dir="${pom.basedir}/src/templates/apiproxy/proxies" includes="**" />
+                                        </copy>
+                                        <copy todir="${pom.basedir}/src/gateway/apiproxy/targets" filtering="true" overwrite="true">
+                                            <fileset dir="${pom.basedir}/src/templates/apiproxy/targets" includes="**" />
+                                        </copy>
+                                    </target>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <!--
+            To be used when building docker files manually and not using the spotify
+            Plugin
+             -->
+            <id>regen-config-json</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-antrun-plugin</artifactId>
+                        <version>1.8</version>
+                        <executions>
+                            <execution>
+                                <id>regen-config</id>
+                                <phase>generate-sources</phase>
+                                <goals>
+                                    <goal>run</goal>
+                                </goals>
+                                <configuration>
+                                    <target>
+                                        <filter filtersfile="${pom.basedir}/api-metadata.properties" />
+                                        <copy todir="${pom.basedir}" filtering="true" overwrite="true">
+                                            <fileset dir="${pom.basedir}/src/templates/apiproxy" includes="config.json" />
+                                        </copy>
+                                    </target>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+    </profiles>
+
+</project>

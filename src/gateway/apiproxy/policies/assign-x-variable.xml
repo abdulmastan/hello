@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="assign-x-variable">
+    <DisplayName>Assign variable</DisplayName>
+    <Properties/>
+    <Set>
+        <Headers>
+            <Header name="X-HZN-GatewayID">{messageid}</Header>
+        </Headers>
+        <QueryParams/>
+        <FormParams/>
+        <!-- <Verb>GET</Verb> -->
+        <Path/>
+    </Set>
+    <AssignVariable>
+        <Name>target.header.host</Name>
+        <Value>fuly.qualified.service.name</Value>
+        <Ref/>
+    </AssignVariable>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo createNew="false" transport="http" type="request"/>
+</AssignMessage>

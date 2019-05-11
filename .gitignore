@@ -1,0 +1,27 @@
+*.class
+.classpath
+.project
+.settings/*
+.externalToolBuilders/*
+target/*
+*.swp
+
+# Package Files #
+*.jar
+*.war
+*.ear
+
+# IntilliJ files
+.idea
+*.iml
+
+*/target
+/bin
+*.orig
+
+# Spring configuration
+src/main/resources/application-local.yml
+
+#Environment Configurations
+.env
+/target/

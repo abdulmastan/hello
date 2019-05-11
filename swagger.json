@@ -1,0 +1,56 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "demographics-api",
+    "version": "1.0.0",
+    "title": "demographics-api",
+    "contact": {"name": "LiquidHub"}
+  },
+  "paths": {
+    "/samplepayload": {
+      "post": {
+        "summary": "Send Sample Payload",
+        "description": "This endpoint processes a Sample Payload",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/SamplePayload"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Status 200"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "SamplePayload": {
+      "type": "object",
+      "required": [
+        "id",
+        "message"
+      ],
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32",
+          "description": "The ID must contain numbers only and have a length on 1 - 9 numbers."
+        },
+        "message": {
+          "type": "string",
+          "description": "This is a sample message that must have at least 3 characters and no more than 256 characters."
+        }
+      },
+      "description": "Sample Payload Object"
+    }
+  }
+}

@@ -1,0 +1,59 @@
+server:
+  port: 8080
+# Use this section to define spring configuration settings
+spring:
+  profiles:
+    active: LOCAL
+  logging:
+    config: classpath:logback-app.xml
+    level:
+      root: WARN
+      org.springframework: INFO
+      com.lh: INFO
+      org.springframework.aop.interceptor.CustomizableTraceInterceptor: TRACE
+---
+spring:
+  profiles: LOCAL
+  datasource:
+    url: jdbc:oracle:thin:@10.160.7.18:1521:xe
+    username: SYSTEM
+    password: mastan
+    driver-class-name: oracle.jdbc.driver.OracleDriver   
+---
+spring:
+  profiles: DEV
+  datasource:
+    url: jdbc:oracle:thin:@192.168.200.189:1521:AGNDEV
+    username: LH_PRE_LAND
+    password: newuser
+    driver-class-name: oracle.jdbc.driver.OracleDriver
+---
+spring:
+  profiles: QA
+  datasource:
+    url: jdbc:oracle:thin:@10.110.41.94:1521:allergan
+    username: lh_pre_land
+    password: newuser
+    driver-class-name: oracle.jdbc.driver.OracleDriver
+---
+spring:
+  profiles: PRD
+  datasource:
+    url: jdbc:oracle:thin:@10.110.41.112:1521:allergan
+    username: lh_pre_land
+    password: newuser
+    driver-class-name: oracle.jdbc.driver.OracleDriver
+---
+sql:
+  patDemoInsertQuery: >
+    INSERT INTO LH_PRE_LAND.PRE_LND_PAT_DEMO(SPP_PAT_ID,PAT_DATA_SRC_PRVDR,ALT_PAT_ID,ALT_SRC_PRVDR,MDM_PAT_ID,PAT_REG_DT,SALUTATION,PAT_LST_NM,PAT_MID_NM,PAT_FST_NM,PAT_SUFFIX,PAT_ADDR_LINE1,PAT_ADDR_LINE2,PAT_CITY,PAT_STATE,PAT_PSTL_ID,PAT_YOB,PAT_GNDR,PAT_SSN,PAT_HOME_PHONE,PAT_WORK_PHONE,PAT_ALT_PHONE,PAT_MOBILE_PHONE,PAT_PREFERED_PHONE,PAT_PREFERED_CONTACT_METHOD,PAT_FAX,PAT_EMAIL,PAT_RECORD_STATS,PAT_PRACTISE_ASSOC,PAT_CM_SR_NO,PAT_PRMRY_PRVDR_ID,PAT_FACILITY_ID,BATCH_NO,BATCH_STAT,INSERT_TIMESTAMP) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+batchStatus:
+  open: OPEN
+  close: CLOSED
+  cancel: CANCELED
+batchResponseStatus:
+  success: Success-200
+  resourceError: Error-400
+  internalServerError: InternalServerError-500
+batchParameters:
+  batchSize: 100

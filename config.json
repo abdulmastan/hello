@@ -1,0 +1,247 @@
+{
+  "configurations": [
+    {
+      "name": "dev",
+      "policies": [
+        {
+          "name": "AM-Set-ReqHeaders.xml",
+          "tokens": [
+            {
+              "xpath": "/AssignMessage/Set/Headers/Header[@name='ENV']",
+              "value": "dev"
+            }
+          ]
+        },
+        {
+          "name": "Spike-Arrest-ByClient.xml",
+          "tokens": [
+            {
+              "xpath": "/SpikeArrest/Rate",
+              "value": "50ps"
+            }
+          ]
+
+        },
+        {
+         "name": "AC-IPWhitelisting.xml",
+          "tokens": [
+            {
+              "xpath": "/AccessControl/IPRules/MatchRule/SourceAddress",
+              "value": "10.10.10.200"
+            }
+          ]
+        },
+        {
+          "name": "JSON-ThreatProtection.xml",
+          "tokens": [
+            {
+              "xpath": "/JSONThreatProtection/ArrayElementCount",
+              "value": "250"
+            },
+            {
+              "xpath": "/JSONThreatProtection/ContainerDepth",
+              "value": "6"
+            },
+            {
+              "xpath": "/JSONThreatProtection/ObjectEntryCount",
+              "value": "15"
+            },
+            {
+              "xpath": "/JSONThreatProtection/ObjectEntryNameLength",
+              "value": "32"
+            },{
+              "xpath": "/JSONThreatProtection/StringValueLength",
+              "value": "512"
+            }
+
+          ]
+
+        }
+      ],
+      "proxies": [
+        {
+          "name": "default.xml",
+          "tokens": [
+            {
+              "xpath": "/ProxyEndpoint/HTTPProxyConnection/BasePath",
+              "value": "/v1/demographics"
+            }
+          ]
+        }
+      ],
+      "targets": [
+        {
+          "name": "default.xml",
+          "tokens": [
+            {
+              "xpath": "/TargetEndpoint/HTTPTargetConnection/URL",
+              "value": "http://209.61.129.152:8080/lhaapibatch/batch/"
+            }
+          ]
+        }
+      ]
+    },
+  {
+      "name": "test",
+      "policies": [
+        {
+          "name": "AM-Set-ReqHeaders.xml",
+          "tokens": [
+            {
+              "xpath": "/AssignMessage/Set/Headers/Header[@name='ENV']",
+              "value": "test"
+            }
+          ]
+        },
+        {
+          "name": "Spike-Arrest-ByClient.xml",
+          "tokens": [
+            {
+              "xpath": "/SpikeArrest/Rate",
+              "value": "200ps"
+            }
+          ]
+
+        },
+        {
+         "name": "AC-IPWhitelisting.xml",
+          "tokens": [
+            {
+              "xpath": "/AccessControl/IPRules/MatchRule/SourceAddress",
+              "value": "10.10.10.200"
+            }
+          ]
+        },
+        {
+          "name": "JSON-ThreatProtection.xml",
+          "tokens": [
+            {
+              "xpath": "/JSONThreatProtection/ArrayElementCount",
+              "value": "250"
+            },
+            {
+              "xpath": "/JSONThreatProtection/ContainerDepth",
+              "value": "6"
+            },
+            {
+              "xpath": "/JSONThreatProtection/ObjectEntryCount",
+              "value": "15"
+            },
+            {
+              "xpath": "/JSONThreatProtection/ObjectEntryNameLength",
+              "value": "32"
+            },{
+              "xpath": "/JSONThreatProtection/StringValueLength",
+              "value": "512"
+            }
+
+          ]
+
+        }
+      ],
+      "proxies": [
+        {
+          "name": "default.xml",
+          "tokens": [
+            {
+              "xpath": "/ProxyEndpoint/HTTPProxyConnection/BasePath",
+              "value": "/v1/demographics"
+            }
+          ]
+        }
+      ],
+      "targets": [
+        {
+          "name": "default.xml",
+          "tokens": [
+            {
+              "xpath": "/TargetEndpoint/HTTPTargetConnection/URL",
+              "value": "http://209.61.133.199:8080/lhaapibatch/batch/"
+            }
+          ]
+        }
+      ]
+    },
+   {
+      "name": "prod",
+      "policies": [
+        {
+          "name": "AM-Set-ReqHeaders.xml",
+          "tokens": [
+            {
+              "xpath": "/AssignMessage/Set/Headers/Header[@name='ENV']",
+              "value": "prod"
+            }
+          ]
+        },
+        {
+          "name": "Spike-Arrest-ByClient.xml",
+          "tokens": [
+            {
+              "xpath": "/SpikeArrest/Rate",
+              "value": "200ps"
+            }
+          ]
+
+        },
+        {
+         "name": "AC-IPWhitelisting.xml",
+          "tokens": [
+            {
+              "xpath": "/AccessControl/IPRules/MatchRule/SourceAddress",
+              "value": "10.10.10.200"
+            }
+          ]
+        },
+        {
+          "name": "JSON-ThreatProtection.xml",
+          "tokens": [
+            {
+              "xpath": "/JSONThreatProtection/ArrayElementCount",
+              "value": "250"
+            },
+            {
+              "xpath": "/JSONThreatProtection/ContainerDepth",
+              "value": "6"
+            },
+            {
+              "xpath": "/JSONThreatProtection/ObjectEntryCount",
+              "value": "15"
+            },
+            {
+              "xpath": "/JSONThreatProtection/ObjectEntryNameLength",
+              "value": "32"
+            },{
+              "xpath": "/JSONThreatProtection/StringValueLength",
+              "value": "512"
+            }
+
+          ]
+
+        }
+      ],
+      "proxies": [
+        {
+          "name": "default.xml",
+          "tokens": [
+            {
+              "xpath": "/ProxyEndpoint/HTTPProxyConnection/BasePath",
+              "value": "/v1/demographics"
+            }
+          ]
+        }
+      ],
+      "targets": [
+        {
+          "name": "default.xml",
+          "tokens": [
+            {
+              "xpath": "/TargetEndpoint/HTTPTargetConnection/URL",
+              "value": "http://209.61.129.152:8080/lhaapidemographics/demographics"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,574 @@
+{
+  "configurations": [
+    {
+      "name": "dev",
+      "policies": [
+        {
+          "name": "Assign-Message-1.xml",
+          "tokens": [
+            {
+              "xpath": "/AssignMessage/Set/Headers/Header[@name='ENV']",
+              "value": "dev"
+            }
+          ]
+        },
+        {
+          "name": "assign-x-variable.xml",
+          "tokens": [
+            {
+              "xpath": "/AssignMessage/AssignVariable/Value",
+              "value": "@artifactId@.@ecs.dev.domain@"
+            }
+          ]
+        },
+        {
+          "name": "spike_arrest_by_clientid.xml",
+          "tokens": [
+            {
+              "xpath": "/SpikeArrest/Rate",
+              "value": "200ps"
+            }
+          ]
+
+        },
+        {
+          "name": "json_threat_protection.xml",
+          "tokens": [
+            {
+              "xpath": "/JSONThreatProtection/ArrayElementCount",
+              "value": "1"
+            },
+            {
+              "xpath": "/JSONThreatProtection/ContainerDepth",
+              "value": "1"
+            },
+            {
+              "xpath": "/JSONThreatProtection/ObjectEntryCount",
+              "value": "1"
+            },
+            {
+              "xpath": "/JSONThreatProtection/ObjectEntryNameLength",
+              "value": "1"
+            },{
+              "xpath": "/JSONThreatProtection/StringValueLength",
+              "value": "1"
+            }
+
+          ]
+
+        },
+        {
+          "name": "log_message.xml",
+          "tokens": [
+            {
+              "xpath": "/MessageLogging/Syslog/Host",
+              "value": "localhost"
+            },
+            {
+              "xpath": "/MessageLogging/Syslog/Port",
+              "value": "556"
+            }
+          ]
+
+        }
+      ],
+      "proxies": [
+        {
+          "name": "default.xml",
+          "tokens": [
+            {
+              "xpath": "/ProxyEndpoint/HTTPProxyConnection/BasePath",
+              "value": "/@api.version@/@artifactId@"
+            }
+          ]
+        }
+      ],
+      "targets": [
+        {
+          "name": "default.xml",
+          "tokens": [
+            {
+              "xpath": "/TargetEndpoint/HTTPTargetConnection/URL",
+              "value": "@ecs_http_protocol@://@artifactId@.@ecs.dev.domain@/"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "sit",
+      "policies": [
+        {
+          "name": "Assign-Message-1.xml",
+          "tokens": [
+            {
+              "xpath": "/AssignMessage/Set/Headers/Header[@name='ENV']",
+              "value": "sit"
+            }
+          ]
+        },
+        {
+          "name": "assign-x-variable.xml",
+          "tokens": [
+            {
+              "xpath": "/AssignMessage/AssignVariable/Value",
+              "value": "@artifactId@.@ecs.sit.domain@"
+            }
+          ]
+        },
+        {
+          "name": "spike_arrest_by_clientid.xml",
+          "tokens": [
+            {
+              "xpath": "/SpikeArrest/Rate",
+              "value": "200ps"
+            }
+          ]
+
+        },
+        {
+          "name": "json_threat_protection.xml",
+          "tokens": [
+            {
+              "xpath": "/JSONThreatProtection/ArrayElementCount",
+              "value": "1"
+            },
+            {
+              "xpath": "/JSONThreatProtection/ContainerDepth",
+              "value": "1"
+            },
+            {
+              "xpath": "/JSONThreatProtection/ObjectEntryCount",
+              "value": "1"
+            },
+            {
+              "xpath": "/JSONThreatProtection/ObjectEntryNameLength",
+              "value": "1"
+            },{
+              "xpath": "/JSONThreatProtection/StringValueLength",
+              "value": "1"
+            }
+
+          ]
+
+        },
+        {
+          "name": "log_message.xml",
+          "tokens": [
+            {
+              "xpath": "/MessageLogging/Syslog/Host",
+              "value": "localhost"
+            },
+            {
+              "xpath": "/MessageLogging/Syslog/Port",
+              "value": "556"
+            }
+          ]
+
+        }
+      ],
+      "proxies": [
+        {
+          "name": "default.xml",
+          "tokens": [
+            {
+              "xpath": "/ProxyEndpoint/HTTPProxyConnection/BasePath",
+              "value": "/@api.version@/@artifactId@"
+            }
+          ]
+        }
+      ],
+      "targets": [
+        {
+          "name": "default.xml",
+          "tokens": [
+            {
+              "xpath": "/TargetEndpoint/HTTPTargetConnection/URL",
+              "value": "@ecs_http_protocol@://@artifactId@.@ecs.sit.domain@/"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "uat",
+      "policies": [
+        {
+          "name": "Assign-Message-1.xml",
+          "tokens": [
+            {
+              "xpath": "/AssignMessage/Set/Headers/Header[@name='ENV']",
+              "value": "uat"
+            }
+          ]
+        },
+        {
+          "name": "assign-x-variable.xml",
+          "tokens": [
+            {
+              "xpath": "/AssignMessage/AssignVariable/Value",
+              "value": "@artifactId@.@ecs.uat.domain@"
+            }
+          ]
+        },
+        {
+          "name": "spike_arrest_by_clientid.xml",
+          "tokens": [
+            {
+              "xpath": "/SpikeArrest/Rate",
+              "value": "200ps"
+            }
+          ]
+
+        },
+        {
+          "name": "json_threat_protection.xml",
+          "tokens": [
+            {
+              "xpath": "/JSONThreatProtection/ArrayElementCount",
+              "value": "1"
+            },
+            {
+              "xpath": "/JSONThreatProtection/ContainerDepth",
+              "value": "1"
+            },
+            {
+              "xpath": "/JSONThreatProtection/ObjectEntryCount",
+              "value": "1"
+            },
+            {
+              "xpath": "/JSONThreatProtection/ObjectEntryNameLength",
+              "value": "1"
+            },{
+              "xpath": "/JSONThreatProtection/StringValueLength",
+              "value": "1"
+            }
+
+          ]
+
+        },
+        {
+          "name": "log_message.xml",
+          "tokens": [
+            {
+              "xpath": "/MessageLogging/Syslog/Host",
+              "value": "localhost"
+            },
+            {
+              "xpath": "/MessageLogging/Syslog/Port",
+              "value": "556"
+            }
+          ]
+
+        }
+      ],
+      "proxies": [
+        {
+          "name": "default.xml",
+          "tokens": [
+            {
+              "xpath": "/ProxyEndpoint/HTTPProxyConnection/BasePath",
+              "value": "/@api.version@/@artifactId@"
+            }
+          ]
+        }
+      ],
+      "targets": [
+        {
+          "name": "default.xml",
+          "tokens": [
+            {
+              "xpath": "/TargetEndpoint/HTTPTargetConnection/URL",
+              "value": "@ecs_http_protocol@://@artifactId@.@ecs.uat.domain@/"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "stage",
+      "policies": [
+        {
+          "name": "Assign-Message-1.xml",
+          "tokens": [
+            {
+              "xpath": "/AssignMessage/Set/Headers/Header[@name='ENV']",
+              "value": "stage"
+            }
+          ]
+        },
+        {
+          "name": "assign-x-variable.xml",
+          "tokens": [
+            {
+              "xpath": "/AssignMessage/AssignVariable/Value",
+              "value": "@artifactId@.@ecs.stage.domain@"
+            }
+          ]
+        },
+        {
+          "name": "spike_arrest_by_clientid.xml",
+          "tokens": [
+            {
+              "xpath": "/SpikeArrest/Rate",
+              "value": "200ps"
+            }
+          ]
+
+        },
+        {
+          "name": "json_threat_protection.xml",
+          "tokens": [
+            {
+              "xpath": "/JSONThreatProtection/ArrayElementCount",
+              "value": "1"
+            },
+            {
+              "xpath": "/JSONThreatProtection/ContainerDepth",
+              "value": "1"
+            },
+            {
+              "xpath": "/JSONThreatProtection/ObjectEntryCount",
+              "value": "1"
+            },
+            {
+              "xpath": "/JSONThreatProtection/ObjectEntryNameLength",
+              "value": "1"
+            },{
+              "xpath": "/JSONThreatProtection/StringValueLength",
+              "value": "1"
+            }
+
+          ]
+
+        },
+        {
+          "name": "log_message.xml",
+          "tokens": [
+            {
+              "xpath": "/MessageLogging/Syslog/Host",
+              "value": "localhost"
+            },
+            {
+              "xpath": "/MessageLogging/Syslog/Port",
+              "value": "556"
+            }
+          ]
+
+        }
+      ],
+      "proxies": [
+        {
+          "name": "default.xml",
+          "tokens": [
+            {
+              "xpath": "/ProxyEndpoint/HTTPProxyConnection/BasePath",
+              "value": "/@api.version@/@artifactId@"
+            }
+          ]
+        }
+      ],
+      "targets": [
+        {
+          "name": "default.xml",
+          "tokens": [
+            {
+              "xpath": "/TargetEndpoint/HTTPTargetConnection/URL",
+              "value": "@ecs_http_protocol@://@artifactId@.@ecs.stage.domain@/"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "prod",
+      "policies": [
+        {
+          "name": "Assign-Message-1.xml",
+          "tokens": [
+            {
+              "xpath": "/AssignMessage/Set/Headers/Header[@name='ENV']",
+              "value": "prod"
+            }
+          ]
+        },
+        {
+          "name": "assign-x-variable.xml",
+          "tokens": [
+            {
+              "xpath": "/AssignMessage/AssignVariable/Value",
+              "value": "@artifactId@.@ecs.prod.domain@"
+            }
+          ]
+        },
+        {
+          "name": "spike_arrest_by_clientid.xml",
+          "tokens": [
+            {
+              "xpath": "/SpikeArrest/Rate",
+              "value": "200ps"
+            }
+          ]
+
+        },
+        {
+          "name": "json_threat_protection.xml",
+          "tokens": [
+            {
+              "xpath": "/JSONThreatProtection/ArrayElementCount",
+              "value": "1"
+            },
+            {
+              "xpath": "/JSONThreatProtection/ContainerDepth",
+              "value": "1"
+            },
+            {
+              "xpath": "/JSONThreatProtection/ObjectEntryCount",
+              "value": "1"
+            },
+            {
+              "xpath": "/JSONThreatProtection/ObjectEntryNameLength",
+              "value": "1"
+            },{
+              "xpath": "/JSONThreatProtection/StringValueLength",
+              "value": "1"
+            }
+
+          ]
+
+        },
+        {
+          "name": "log_message.xml",
+          "tokens": [
+            {
+              "xpath": "/MessageLogging/Syslog/Host",
+              "value": "localhost"
+            },
+            {
+              "xpath": "/MessageLogging/Syslog/Port",
+              "value": "556"
+            }
+          ]
+
+        }
+      ],
+      "proxies": [
+        {
+          "name": "default.xml",
+          "tokens": [
+            {
+              "xpath": "/ProxyEndpoint/HTTPProxyConnection/BasePath",
+              "value": "/@api.version@/@artifactId@"
+            }
+          ]
+        }
+      ],
+      "targets": [
+        {
+          "name": "default.xml",
+          "tokens": [
+            {
+              "xpath": "/TargetEndpoint/HTTPTargetConnection/URL",
+              "value": "@ecs_http_protocol@://@artifactId@.@ecs.prod.domain@/"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "sv",
+      "policies": [
+        {
+          "name": "Assign-Message-1.xml",
+          "tokens": [
+            {
+              "xpath": "/AssignMessage/Set/Headers/Header[@name='ENV']",
+              "value": "sv"
+            }
+          ]
+        },
+        {
+          "name": "assign-x-variable.xml",
+          "tokens": [
+            {
+              "xpath": "/AssignMessage/AssignVariable/Value",
+              "value": "@artifactId@"
+            }
+          ]
+        },
+        {
+          "name": "spike_arrest_by_clientid.xml",
+          "tokens": [
+            {
+              "xpath": "/SpikeArrest/Rate",
+              "value": "200ps"
+            }
+          ]
+
+        },
+        {
+          "name": "json_threat_protection.xml",
+          "tokens": [
+            {
+              "xpath": "/JSONThreatProtection/ArrayElementCount",
+              "value": "1"
+            },
+            {
+              "xpath": "/JSONThreatProtection/ContainerDepth",
+              "value": "1"
+            },
+            {
+              "xpath": "/JSONThreatProtection/ObjectEntryCount",
+              "value": "1"
+            },
+            {
+              "xpath": "/JSONThreatProtection/ObjectEntryNameLength",
+              "value": "1"
+            },{
+              "xpath": "/JSONThreatProtection/StringValueLength",
+              "value": "1"
+            }
+
+          ]
+
+        },
+        {
+          "name": "log_message.xml",
+          "tokens": [
+            {
+              "xpath": "/MessageLogging/Syslog/Host",
+              "value": "localhost"
+            },
+            {
+              "xpath": "/MessageLogging/Syslog/Port",
+              "value": "556"
+            }
+          ]
+
+        }
+      ],
+      "proxies": [
+        {
+          "name": "default.xml",
+          "tokens": [
+            {
+              "xpath": "/ProxyEndpoint/HTTPProxyConnection/BasePath",
+              "value": "/@api.version@/@artifactId@"
+            }
+          ]
+        }
+      ],
+      "targets": [
+        {
+          "name": "default.xml",
+          "tokens": [
+            {
+              "xpath": "/TargetEndpoint/HTTPTargetConnection/URL",
+              "value": "@ecs_http_protocol@://@hz.sv.domain@/@artifactId@"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

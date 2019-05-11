@@ -1,0 +1,68 @@
+<configuration>
+
+       <contextName>lhaapiDemographics</contextName>
+       <!-- property name="LOG_FILE_PATH" value="c:/logs" / -->
+
+       <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+              <!-- Log message format -->
+              <encoder>
+                     <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %contextName [%thread] %-5level %logger{36} - %msg%n
+                     </pattern>
+              </encoder>
+       </appender>
+
+       <!-- Write logs to file -->
+       <appender name="FILE" class="ch.qos.logback.core.FileAppender">
+              <!-- Name of the log file -->
+              <file>${LOG_FILE_PATH}/demographicsApi.log</file>
+
+              <encoder>
+                     <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %contextName [%thread] %-5level %logger{36} - %msg%n
+                     </pattern>
+              </encoder>
+       </appender>
+
+	<!-- Send logs to Logstash -->
+	<appender name="STASH"
+		class="net.logstash.logback.appender.LogstashTcpSocketAppender">
+
+		<!-- Set Logstash server host and its port -->
+		<remoteHost>${LOGSTASH_SERVER}</remoteHost>
+		<port>${LOGSTASH_SERVER_PORT}</port>
+
+		<!-- Add Logstash encoder to encode logs into JSON format -->
+		<encoder class="net.logstash.logback.encoder.LogstashEncoder">
+			<customFields>{"contextName":"lhaapiDemographics"}</customFields>
+			<fieldNames>
+				<message>logMessage</message>
+			</fieldNames>
+		</encoder>
+	</appender>
+          
+          <logger name="com.liquidhub.api" level="info" additivity="false">
+                     <appender-ref ref="STDOUT" />
+                     <appender-ref ref="FILE" />
+                     <appender-ref ref="STASH" />                    
+          </logger>
+                           
+          <logger name="com.liquidhub.batch" level="info" additivity="false">
+                     <appender-ref ref="STDOUT" />
+                     <appender-ref ref="FILE" />
+                     <appender-ref ref="STASH" />                    
+          </logger>            
+              
+              
+          <logger name="org.springframework" level="warn" additivity="false">
+                     <appender-ref ref="STDOUT" />
+                     <appender-ref ref="FILE" />
+                     <appender-ref ref="STASH" />                    
+          </logger>            
+
+        <!-- Setting the root level of logging to INFO -->
+          <root level="warn">
+                     <appender-ref ref="STDOUT" />
+                     <appender-ref ref="FILE" />
+                     <appender-ref ref="STASH" />
+          </root>
+	
+</configuration>

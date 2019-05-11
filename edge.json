@@ -1,0 +1,58 @@
+{
+  "version": "1.0",
+  "envConfig": {
+    "test": {
+      "targetServers": [
+        {
+          "name" : "Target",
+          "host" : "example.com",
+          "isEnabled" : true,
+          "port" : 8080,
+          "sSLInfo": {
+            "enabled": "true",
+            "clientAuthEnabled": "false",
+            "keyStore": "keystore_name",
+            "trustStore": "truststore_name",
+            "keyAlias": "key_alias",
+            "ignoreValidationErrors": "false"
+          }
+        },
+        {
+          "name" : "Target2",
+          "host" : "example2.com",
+          "isEnabled" : true,
+          "port" : 8080,
+          "sSLInfo": {
+            "enabled": "true",
+            "clientAuthEnabled": "false",
+            "keyStore": "keystore_name",
+            "trustStore": "truststore_name",
+            "keyAlias": "key_alias",
+            "ignoreValidationErrors": "false"
+          }
+        }
+      ],
+      "caches": [
+        {
+          "name": "quote",
+          "description": "quote"
+        },
+        {
+          "name": "userMetadata",
+          "description": "user metadata cache",
+          "diskSizeInMB" : 0,
+          "distributed" : true,
+          "inMemorySizeInKB" : 0,
+          "maxElementsInMemory" : 0,
+          "maxElementsOnDisk" : 0,
+          "overflowToDisk" : false,
+          "persistent" : false
+        }
+      ]
+    },
+    "dev": {
+      "caches": [],
+      "targetServers": []
+    }
+  }
+}
